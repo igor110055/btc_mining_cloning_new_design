@@ -4,7 +4,7 @@ const logger = require("../helpers/logger");
 
 let obj;
 
-if (process.env.NODE_ENV.trim() == "dev") {
+if (process.env.NODE_ENV && process.env.NODE_ENV.trim() == "dev") {
     obj = {
         connectionLimit : 100,
         host     : 'localhost',
