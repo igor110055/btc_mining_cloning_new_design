@@ -1,0 +1,82 @@
+<%-include("../../partials/header")%>
+
+<div class="row">
+    
+    <div class="col-12">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card mini-stats-wid">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="flex-grow-1">
+                                <p class="text-muted fw-medium pt-3">Balance</p>
+                                <h4 class="mb-0"><%=websiteDetails.website_currency%><%=user.vendor_balance.toLocaleString()%></h4>
+                            </div>
+
+                            <div class="flex-shrink-0 align-self-center">
+                                <i class="bx bx-money" style="font-size:30px !important"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mini-stats-wid">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="flex-grow-1">
+                                <p class="text-muted fw-medium pt-3">Total Coupon</p>
+                                <h4 class="mb-0"><%=total%> </h4>
+                            </div>
+
+                            <div class="flex-shrink-0 align-self-center ">
+                                <i class="bx bx-key" style="font-size:30px !important"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mini-stats-wid">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="flex-grow-1">
+                                <p class="text-muted fw-medium pt-3">Used Coupon</p>
+                                <h4 class="mb-0"><%=usedCoupons%></h4>
+                            </div>
+
+                            <div class="flex-shrink-0 align-self-center">
+                                <i class="bx bx-key" style="font-size:30px !important"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mini-stats-wid">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="flex-grow-1">
+                                <p class="text-muted fw-medium pt-3">Unused Coupon</p>
+                                <h4 class="mb-0"><%=validCoupons%></h4>
+                            </div>
+
+                            <div class="flex-shrink-0 align-self-center">
+                                <i class="bx bx-key" style="font-size:30px !important"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <!-- end row -->
+
+        <%-include("./partials/couponList",{coupons})%>
+    </div>
+</div>
+ 
+
+
+
+<%-include("../../partials/footer")%>

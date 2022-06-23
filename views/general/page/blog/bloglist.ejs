@@ -1,0 +1,128 @@
+<%-include("../../partials/header")%>
+    <%-include("./css.ejs")%>
+        <section class="breadcrumb_area ">
+            <img src="/home/wp-content/themes/saasland/assets/img/banner_bg.png"
+                class="breadcrumb_shap">
+            <div class="container">
+                <div class="breadcrumb_content text-center center">
+                    <h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20">
+                        Blog</h1>
+                    <p class="f_300 w_color f_size_16 l_height26">Multiple your earnings by participating in sponsored contents</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog_area blog_area_two sec_pad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 blog_grid_info">
+                        <div class="row">
+
+                            <%posts.map(pt =>{%>
+
+
+                            
+                            <div
+                                class="col-lg-6 post-7558 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+                                <div class="blog_list_item blog_list_item_two">
+                                    <div class="post_date">
+                                        <h2> <%=pt.date%> <span> <%=pt.month%> </span></h2>
+                                    </div>
+                                    <a
+                                        href="/blog/<%=pt.post_slug%>">
+                                        <img style="width:100%;height: 300px !important;object-fit:cover;object-position:top" src="<%=pt.post_image ? pt.post_image : '/img/thumbnail.png'%>"
+                                            class="img-fluid wp-post-image" alt="<%=pt.post_title%>"> </a>
+                                    <div class="blog_content"><a
+                                            href="/blog/<%=pt.post_slug%>"
+                                            title="<%=pt.post_title%>">
+                                            <h5 class="blog_title">
+                                                <%=pt.post_title%></h5>
+                                        </a>
+                                        <p> <%=pt.short_des%></p>
+                                        <div class="post-info-bottom">
+                                            <!--<a href="/blog/<%=pt.post_slug%>"
+                                                class="learn_btn_two">
+                                                Read More <i class="arrow_right"></i>
+                                            </a>-->
+
+                                            <a class="post-info-comments" href="/blog/<%=pt.post_slug%>">
+                                                <span class="admin-type text-capitalize">
+                                                    <i class="fa fa-user"></i><%=pt.username%>
+                                                </span>
+                                                <span class="comments-type pl-2">
+                                                    <i class="fa fa-eye"></i><%=pt.post_views%>
+                                                </span>
+                                                <span class="comments-type pl-2">
+                                                    <i class="fa fa-usd"></i><%=pt.post_earnable ? 'Earnable' : 'Not Earnable'%>
+                                                </span>
+                                            </a>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <%})%>
+                            
+                            
+                        </div>
+
+                        <%-include("./navigation")%>
+
+                        
+                    </div>
+
+
+                    <div class="col-lg-4">
+                        <div class="blog-sidebar">
+                            <div id="block-3" class="widget sidebar_widget widget_block">
+                                <div class="wp-container-62ae63fb8221f wp-block-group">
+                                    <div class="wp-block-group__inner-container">
+                                        <div class="widget widget_search">
+                                            <form action="/blog"
+                                                class="search-form input-group">
+                                                <input type="search" name="search" class="form-control" placeholder="Search"
+                                                    required="">
+                                                <span class="input-group-addon"><button type="submit"><i
+                                                            class="ti-search"></i></button></span>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="block-4" class="widget sidebar_widget widget_block">
+                                <div class="wp-container-62ae63fb83bde wp-block-group">
+                                    <div class="wp-block-group__inner-container">
+                                        <div class="widget recent_post_widget_two">
+                                            <h2 class="widgettitle">Popular Posts</h2>
+                                            <%popular.map(pt =>{%>
+                                            <div
+                                                class="media post_item post-594 post type-post status-publish format-link has-post-thumbnail hentry category-fashion category-food-for-thought tag-saasland tag-ui-ux-design tag-wheels post_format-post-format-link">
+                                                <a
+                                                    href="/blog/<%=pt.post_slug%>">
+                                                    <img style="width: 85px;height: 70px !important;object-fit:cover;object-position:top" src="<%=pt.post_image ? pt.post_image : '/img/thumbnail.png'%>"
+                                                        class="media-object wp-post-image"
+                                                        alt="<%=pt.post_title%>">
+                                                </a>
+                                                <div class="media-body">
+                                                    <a href="/blog/<%=pt.post_slug%>"
+                                                        title="<%=pt.post_title%>">
+                                                        <h3><%=pt.post_title%></h3>
+                                                    </a>
+                                                    <span><%=pt.post_created_at%></span>
+                                                </div>
+                                            </div>
+                                            <%})%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <%-include("../../partials/footer")%>

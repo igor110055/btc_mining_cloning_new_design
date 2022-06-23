@@ -1,0 +1,39 @@
+
+<style>
+    .page-numbers i{
+        line-height: 2.3 !important;
+    }
+</style>
+
+<nav class="navigation pagination pt-4" aria-label=" ">
+    <div class="nav-links">
+    <%if(prevBtn){%>
+        <a class="prev page-numbers" href="<%=link%>page=<%=prevBtn%>"><i class="ti-arrow-left"></i></a>
+    <%}%>
+    
+    <%let count=1; paginationArr.slice(currentPage - 1).map(p=>{%>
+        
+        <%if(count <=9){%>
+    
+            <%if(currentPage===p){%>
+                <span aria-current="page" class="page-numbers current"><%=p%></span>
+                
+                <%}else{%>
+                    <a class="page-numbers" href="<%=link%>page=<%=p%>"><%=p%></a>
+
+            <%}%>
+    
+        <%}%>
+    
+            <%count +=1%>
+    
+    <%})%>
+    
+        
+
+    <%if(nextBtn){%>
+        <a class="next page-numbers" href="<%=link%>page=<%=nextBtn%>"><i class="ti-arrow-right"></i></a>
+    <%}%>
+        
+    </div>
+</nav>

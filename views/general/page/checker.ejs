@@ -1,0 +1,55 @@
+<%-include("../partials/header")%>
+
+
+<%-include("./blog/css.ejs")%>
+        <section class="breadcrumb_area ">
+            <img src="/home/wp-content/themes/saasland/assets/img/banner_bg.png"
+                class="breadcrumb_shap"
+                alt="<%=title%>">
+            <div class="container">
+                <div class="breadcrumb_content_two text-center text-white">
+              
+                    <h1 class="text-white"> <%=title%></h1>
+                    
+                </div>
+            </div>
+        </section>
+
+
+        <section class="blog_area blog_area_two sec_pad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-6 mx-auto">
+                        <div class="section-title reveal text-center mb-80 reveal">
+                            <h3 class="mb-3">Check Coupons Availability</h3>
+                        </div>
+                        <!-- end of section title -->
+                    </div>
+                </div>
+        
+                <!-- end of col -->
+                <div class="row">
+                    <div class="col-12 col-lg-8 mx-auto">
+                        <form id="checker" class="form form--sm">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Coupon Code</label>
+                                    <input type="text" placeholder="Enter Coupon Code Here" class="form-control" id="name" required>
+                                </div>
+                            
+                            
+                                <div>
+                                    <button id="submit" type="submit" class="btn btn-primary w-md btn-lg">Go</button>
+                                </div>
+                            </form>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+     
+<script src="/home/js/checker.js"></script>
+<%-include("../partials/footer")%>

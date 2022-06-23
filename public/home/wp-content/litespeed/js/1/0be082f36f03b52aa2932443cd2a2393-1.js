@@ -1,0 +1,6 @@
+"use strict";class Dl_Subscribe{constructor(){}
+subscribe(){var $=jQuery;$('form.dl_pro_subscribe_form_action').on('submit',function(ev){ev.preventDefault();let $this=$(this);let $btn=$this.find('button.dl_cu_btn');let $message=$this.find('span.dl_subs_message');$message.removeClass('dl-success').removeClass('dl-error');let $classConfirm=this.querySelector('.confirm-submitform');if($classConfirm){if($classConfirm.checked==!1){$message.addClass('dl-error');$message.html('Please select checkbox.');$btn.removeAttr('disabled');return}}
+$.ajax({url:dl_subscribe.ajax_url+'?action=dtsubscribe_add',type:"post",data:{form_data:$this.serialize(),form_settings:$this.data('settings'),},beforeSend:function(){$btn.attr('disabled','disabled')},success:function(res){if(res.success){$message.addClass('dl-success');$this.trigger("reset")}else{$message.addClass('dl-error')}
+$message.html(res.data);$btn.removeAttr('disabled')},error:function(res){$btn.removeAttr('disabled')},complete:function(){$btn.removeAttr('disabled')},})})}}
+new Dl_Subscribe().subscribe()
+;

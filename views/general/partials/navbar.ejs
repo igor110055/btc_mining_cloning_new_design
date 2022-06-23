@@ -1,0 +1,124 @@
+<nav class="navbar navbar-expand-lg menu_center">
+    <div class="container"> <a class="navbar-brand sticky_logo " href="/">
+            <img class="main_logo_img"
+                style="width:156px;height:40px;object-fit: contain" src="<%=websiteDetails.website_logo%>"
+                srcset="<%=websiteDetails.website_logo%> 2x"
+                alt="<%=websiteDetails.website_title%> ">
+            <img class="sticky_logo_img"
+                style="width:156px;height:40px;object-fit: contain" src="<%=websiteDetails.website_logo%>"
+                srcset="<%=websiteDetails.website_logo%> 2x"
+                alt="<%=websiteDetails.website_title%> ">
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="menu_toggle">
+                <span class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="hamburger-cross">
+                    <span></span>
+                    <span></span>
+                </span>
+            </span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul id="menu-main-menu" class="navbar-nav menu  ml-auto mr-auto">
+                
+                <li itemscope="itemscope" id="menu-item-2339"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2339 nav-item">
+                    <a href="/" class="nav-link">Home</a> 
+                </li>
+
+                <li itemscope="itemscope" id="menu-item-2339"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2339 dropdown submenu nav-item">
+                    <a href="#" class="nav-link">My Account <span
+                            class="arrow_carrot-right"></span> </a>
+                    <ul role="menu" class=" dropdown-menu menu-depth-2nd">
+                        
+                        <%if(user){%>
+                            <li itemscope="itemscope" id="menu-item-3169"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3169 nav-item">
+                                <a href="<%=user.role ? '/admin/dashboard' : '/user/dashboard'%>" class="nav-link">Dashboard </a>
+                            </li>
+                            <li itemscope="itemscope" id="menu-item-3169"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3169 nav-item">
+                                <a href="<%=user.role ? '/logout?route=admin' : '/logout'%>" class="nav-link">Logout </a>
+                            </li>
+                            
+                        <%}else{%>
+                            <li itemscope="itemscope" id="menu-item-3169"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3169 nav-item">
+                            <a href="/login" class="nav-link">Login </a></li>
+                            <li itemscope="itemscope" id="menu-item-3169"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3169 nav-item">
+                            <a href="/register" class="nav-link">Register </a></li>
+                        <%}%>
+
+                        
+                               
+                    </ul>
+                </li>
+                
+                <li itemscope="itemscope" id="menu-item-2339"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2339 nav-item">
+                    <a href="/page/learn-more" class="nav-link">Learn More</a> 
+                </li>
+                
+                <li itemscope="itemscope" id="menu-item-2339"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2339 nav-item">
+                    <a href="/blog" class="nav-link">Sponsored Content</a> 
+                </li>
+                
+                <li itemscope="itemscope" id="menu-item-2339"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2339 nav-item">
+                    <a href="/page/vendors" class="nav-link">Coupon Vendors</a> 
+                </li>
+
+                <li itemscope="itemscope" id="menu-item-2339"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2339 dropdown submenu nav-item">
+                    <a href="#" class="nav-link">Pages <span
+                            class="arrow_carrot-right"></span> </a>
+                    <ul role="menu" class=" dropdown-menu menu-depth-2nd">
+                        
+                        <li itemscope="itemscope" id="menu-item-3169"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3169 nav-item">
+                            <a href="/page/about-us" class="nav-link">About us </a>
+                        </li>
+                        <li itemscope="itemscope" id="menu-item-3169"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3169 nav-item">
+                            <a href="/page/terms-and-conditions" class="nav-link">Terms & Conditions </a>
+                        </li>
+                        <li itemscope="itemscope" id="menu-item-3169"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3169 nav-item">
+                            <a href="/page/privacy-policy" class="nav-link">Privacy Policy </a>
+                        </li>
+                        <li itemscope="itemscope" id="menu-item-3169"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3169 nav-item">
+                            <a href="/page/disclaimer" class="nav-link">Disclaimer </a>
+                        </li>
+                        <li itemscope="itemscope" id="menu-item-3169"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3169 nav-item">
+                            <a href="/blog" class="nav-link">Blog </a>
+                        </li>
+                               
+                    </ul>
+                </li>
+
+                <li itemscope="itemscope" id="menu-item-2339"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2339 nav-item">
+                    <a href="/contact-us" class="nav-link">Contact Us</a> 
+                </li>
+
+            </ul>
+        </div>
+        <div class="alter_nav search_exist mini_cart_exist">
+            <ul class="navbar-nav search_cart menu">
+                <li title="Coupon Checker" class="nav-item search"><a class="nav-link search-btn" href="/checker"><i class="ti-search"></i></a></li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>

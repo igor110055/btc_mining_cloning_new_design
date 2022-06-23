@@ -1,0 +1,135 @@
+<%-include("../../partials/header")%>
+    <%-include("./css.ejs")%>
+        <section class="breadcrumb_area ">
+            <img src="/home/wp-content/themes/saasland/assets/img/banner_bg.png"
+                class="breadcrumb_shap"
+                alt="<%=post.post_title%>">
+            <div class="container">
+                <div class="breadcrumb_content_two text-center text-white">
+              
+                    <h1 class="text-white"> <%=post.post_title%></h1>
+                    <ol class="list-unstyled">
+                        <span class="admin-type text-capitalize">
+                            <i class="fa fa-user"></i>
+                            <%=post.username%>
+                        </span>
+                        <span class="date-type">
+                           <i class="fa fa-calendar"></i>
+                            <%=post.post_created_at%>
+                        </span>
+                        <span class="comments-type">
+                            <i class="fa fa-eye"></i>
+                            <%=post.post_views2%>
+                        </span>
+                        <span class="comments-type">
+                            <i class="fa fa-usd"></i>
+                            <%=post.post_earnable ? 'Earnable' : 'Not Earnable'%>
+                        </span>
+                        
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog_area blog_area_two sec_pad">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-lg-8 blog_single_info">
+                        <div
+                            class="blog_list_item blog_list_item_two post-578 post type-post status-publish format-audio has-post-thumbnail hentry category-featured category-food-for-thought tag-saas tag-software tag-ui-ux-design post_format-post-format-audio">
+                            
+                            
+                            <%if(post.post_image){%>
+                                <a href="javascript:;" class="post_date">
+                                    <h2><%=post.date%> <span> <%=post.month%> </span></h2>
+                                </a>
+                                <img src="<%=post.post_image%>"
+                                class="img-fluid wp-post-image" alt="<%=post.post_title%>" loading="lazy" width="770" height="400">
+                            <%}%>
+
+                            <div class="blog_content">
+                                
+                                <%-post.post_description%>
+
+
+                                <div class="post-info-bottom ">
+                                    <div class="social_icon">
+                                        share:<ul class="list-unstyled social">
+                                            <li><a onclick="facebookShare('<%=post.post_id%>','<%=websiteDetails.website_facebook_code%>','<%=homeUrl + '/user/blog/' + post.post_slug%>','<%=homeUrl%>')"
+                                                    href="javascript:;"><i
+                                                        class="social_facebook"></i></a></li>
+                                            <li><a onclick="twitterShare('<%=post.post_id%>','<%=post.post_title%>','<%=homeUrl + '/user/blog/' + post.post_slug%>')"
+                                                    href="javascript:;"><i
+                                                        class="social_twitter"></i></a></li>
+                                            <li><a onclick="whatsappShare('<%=post.post_id%>','<%=post.post_title%>','<%=homeUrl + '/user/blog/' + post.post_slug%>')"
+                                                    href="javascript:;"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+                    <div class="col-lg-4">
+                        <div class="blog-sidebar">
+                            <div id="block-3" class="widget sidebar_widget widget_block">
+                                <div class="wp-container-62ae63fb8221f wp-block-group">
+                                    <div class="wp-block-group__inner-container">
+                                        <div class="widget widget_search">
+                                            <form action="/blog"
+                                                class="search-form input-group">
+                                                <input type="search" name="search" class="form-control" placeholder="Search"
+                                                    required="">
+                                                <span class="input-group-addon"><button type="submit"><i
+                                                            class="ti-search"></i></button></span>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="block-4" class="widget sidebar_widget widget_block">
+                                <div class="wp-container-62ae63fb83bde wp-block-group">
+                                    <div class="wp-block-group__inner-container">
+                                        <div class="widget recent_post_widget_two">
+                                            <h2 class="widgettitle">Popular Posts</h2>
+                                            <%popular.map(pt =>{%>
+                                            <div
+                                                class="media post_item post-594 post type-post status-publish format-link has-post-thumbnail hentry category-fashion category-food-for-thought tag-saasland tag-ui-ux-design tag-wheels post_format-post-format-link">
+                                                <a
+                                                    href="/blog/<%=pt.post_slug%>">
+                                                    <img style="width: 85px;height: 70px !important;object-fit:cover;object-position:top" src="<%=pt.post_image ? pt.post_image : '/img/thumbnail.png'%>"
+                                                        class="media-object wp-post-image"
+                                                        alt="<%=pt.post_title%>">
+                                                </a>
+                                                <div class="media-body">
+                                                    <a href="/blog/<%=pt.post_slug%>"
+                                                        title="<%=pt.post_title%>">
+                                                        <h3><%=pt.post_title%></h3>
+                                                    </a>
+                                                    <span><%=pt.post_created_at%></span>
+                                                </div>
+                                            </div>
+                                            <%})%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <button id="Load" hidden></button>
+        <script>
+            let userId = '<%=user.uid%>'
+        </script>
+        <script src="/user/js/user/blog/blog.js"></script>
+        <%-include("../../partials/footer")%>

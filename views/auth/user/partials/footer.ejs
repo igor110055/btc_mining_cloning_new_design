@@ -1,0 +1,31 @@
+</div>
+</main> <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+<script src="/user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/user/js/main.js"></script>
+<script src="/user/js/fetcher.js"></script>
+<!-- App js -->
+<script src="/user/js/lib/cute-alert.js"></script>
+
+<%-websiteDetails.website_footer_code%>
+
+<script>
+
+        try {
+                document.querySelector(".password-wrapper i").addEventListener("click",(e)=>{
+        const passwordInput = document.querySelector("#password");
+        if(passwordInput.type === "password"){
+            passwordInput.type = "text";
+            e.currentTarget.className = "ri-eye-off-fill"
+        }else{
+            passwordInput.type = "password";
+            e.currentTarget.className = "ri-eye-fill"
+        }
+    })
+        } catch (error) {
+                
+        }
+</script>
+</body>
+
+</html>

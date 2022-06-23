@@ -1,0 +1,97 @@
+<%-include("./partials/header")%>
+    
+
+<section
+    class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                <div class="d-flex justify-content-center py-4"> <a href="/"
+                        class="logo d-flex align-items-center w-auto"> <img src="<%=websiteDetails.website_logo%>"
+                            alt=""> </a></div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="pt-4 pb-2">
+                            <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                            <p class="text-center small">Enter your personal details to create account</p>
+                        </div>
+                        <form id="register" class="row g-3">
+
+                            <div class="col-12"> <label for="username" class="form-label">Your Username</label>
+                                <input type="text" name="username" class="form-control" id="username"
+                                    required="">
+                            </div>
+                            
+                            <div class="col-12"> <label for="fullname" class="form-label">Your Full Name</label>
+                                <input type="text" class="form-control" id="fullname"
+                                    required="">
+                            </div>
+
+                            <div class="col-12"> <label for="email" class="form-label">Your
+                                    Email</label> <input type="email" class="form-control"
+                                    id="email" required="">
+                                    <p class="card-title-desc">Provide a valid E-mail for account verification. </p>
+                            </div>
+
+                            <div class="col-12"> <label for="phone" class="form-label">Your Phone Number</label>
+                                <input type="text" class="form-control" id="phone"
+                                    required="">
+                            </div>
+
+                            
+                            <div class="col-12"> <label for="password"
+                                    class="form-label">Password</label> <div class="password-wrapper">
+                                        <input type="password" class="form-control" minlength="4" maxlength="32" id="password" required="">
+                                        <i class="ri-eye-fill"></i>
+                                    </div>
+                            </div>
+
+                            
+                            <div class="col-12"> <label for="country"
+                                    class="form-label">Your Country</label>
+                                    <select id="country" required class="form-select">
+                                        <option>Select Country</option>
+                                        <%countries.map(ct =>{%>
+                                            <option value="<%=ct.name%>"><%=ct.name%></option>
+                                        <%})%>
+                                    </select>
+                            </div>
+
+                            
+                            <div class="col-12"> <label for="upline"
+                                    class="form-label">Your Upline</label>
+                                    <input type="text" class="form-control" id="upline" placeholder="Enter Upline Username (Optional)" value="<%=referrer ? (referrer.username).toUpperCase() : ''%>">
+                                <%if(referrer){%>
+                                    <p class="card-title-desc">You Were Referred By <strong class="text-capitalize"><%=referrer.username%></strong>. </p>
+                                <%}%>
+                            </div>
+
+                            
+
+                            <div class="col-12">
+                                <div class="form-check"> <input class="form-check-input" name="terms"
+                                        type="checkbox" value="" id="remember-check" required=""> <label
+                                        class="form-check-label" for="remember-check">I agree and accept the <a
+                                            href="/page/terms-and-conditions">terms and conditions</a></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12"> <button id="submit" class="btn btn-primary w-100" type="submit">Create
+                                    Account</button></div>
+                            <div class="col-12">
+                                <p class="small mb-0">Already have an account? <a
+                                        href="/login">Log in</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div style="display:none" class="credits"> Developed by <a href="<%=websiteDetails.website_dev_link%>"><%=websiteDetails.website_dev_name%></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/user/js/auth/register.js"></script>
+
+
+<%-include("./partials/footer")%>

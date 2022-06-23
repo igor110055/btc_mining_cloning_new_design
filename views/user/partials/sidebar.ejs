@@ -1,0 +1,51 @@
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+      
+      <li class="nav-item"> <a class="nav-link " href="/user/dashboard"> <i class="bx bxs-dashboard"></i><span>Dashboard</span> </a></li>
+
+      <li class="nav-item"> <a class="nav-link collapsed" href="/user/mining"> <i class="bi bi-hammer"></i><span>Mining</span> </a></li>
+      
+      <li class="nav-item"> <a class="nav-link collapsed" href="/user/packages"> <i class="bx bxs-briefcase-alt-2"></i><span>Subscription</span> </a></li>
+      
+      <li class="nav-item"> <a class="nav-link collapsed" href="/user/withdrawal"> <i class="bx bx-money"></i><span>Withdraw Balances</span> </a></li>
+      
+      <li class="nav-item"> <a class="nav-link collapsed" href="/user/wallet"> <i class="bx bx-wallet"></i><span>Wallet</span> </a></li>
+
+      <li class="nav-item"> <a class="nav-link collapsed" href="/blog"> <i class="bx bx-book-reader"></i><span>Sponsored Post</span> </a></li>
+
+      <li class="nav-item"> <a class="nav-link collapsed" data-bs-target="#components-nav"
+              data-bs-toggle="collapse" href="#"> <i class="bx bx-history"></i><span>History</span><i
+                  class="bi bi-chevron-down ms-auto"></i> </a>
+          <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li> <a href="/user/history/mining"> <i class="bi bi-circle"></i><span>Mining History</span> </a></li>
+              <li> <a href="/user/history/earnings"> <i class="bi bi-circle"></i><span>Earnings History</span> </a></li>
+              <li> <a href="/user/history/withdrawal"> <i class="bi bi-circle"></i><span>Withdrawal History</span> </a></li>
+              <li> <a href="/user/history/referrals"> <i class="bi bi-circle"></i><span>Referrals History</span> </a></li>
+              
+          </ul>
+      </li>
+      
+      <li class="nav-item"> <a class="nav-link collapsed" data-bs-target="#components-settings"
+              data-bs-toggle="collapse" href="#"> <i class="bx bx-slider-alt"></i><span>Settings</span><i
+                  class="bi bi-chevron-down ms-auto"></i> </a>
+          <ul id="components-settings" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li> <a href="/user/settings/profile"> <i class="bi bi-circle"></i><span>Profile Settings</span> </a></li>
+              <li> <a href="/user/settings/security"> <i class="bi bi-circle"></i><span>Security Settings</span> </a>
+              </li>
+          </ul>
+      </li>
+      
+      <%if(user.is_vendor){%>
+      <li class="nav-item"> <a class="nav-link collapsed" data-bs-target="#vendor-settings"
+              data-bs-toggle="collapse" href="#"> <i class="bx bxs-key"></i><span>Vendor</span><i
+                  class="bi bi-chevron-down ms-auto"></i> </a>
+          <ul id="vendor-settings" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li> <a href="/user/vendor"> <i class="bi bi-circle"></i><span>Dashboard</span> </a></li>
+              <li> <a href="/user/vendor/coupon"> <i class="bi bi-circle"></i><span>Create New</span> </a>
+              </li>
+          </ul>
+      </li>
+      <%}%>
+      
+  </ul>
+</aside>

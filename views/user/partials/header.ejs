@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title><%=title%> - <%=websiteDetails.website_tagline%></title>
+    <link rel="shortcut icon" href="<%=websiteDetails.website_favicon%>" />
+    <meta name="robots" content="noindex, nofollow">
+    <%-websiteDetails.website_header_code%>
+    <link href="<%=websiteDetails.website_favicon%>" rel="apple-touch-icon">
+    <link
+        href="/user/css/css.css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+    <link href="/user/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/user/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/user/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/user/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/user/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/user/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/user/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="/user/css/style.css" rel="stylesheet">
+    <link href="/user/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="/user/js/lib/style.css">
+    
+</head>
+
+<body>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between"> <a href="/" class="logo d-flex align-items-center"> <img style="width:100px;height:100px;object-fit:contain" src="<%=websiteDetails.website_logo%>" alt=""> </a> <i class="bi bi-list toggle-sidebar-btn"></i></div>
+        
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                
+                <li class="nav-item dropdown pe-3"> <a class="nav-link nav-profile d-flex align-items-center pe-0"
+                        href="#" data-bs-toggle="dropdown"> <img style="width: 35px;
+                        height: 35px;" src="<%=user.avatar ? user.avatar : '/img/avatar/avatar.jpg'%>" alt="Profile"
+                            class="rounded-circle"> <span class="d-none d-md-block dropdown-toggle ps-2 text-capitalize"><%=user.fullname%> <br><%=websiteDetails.website_currency + balance.total.toLocaleString()%></span> </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6 class="text-capitalize"><%=user.fullname%> <br> <%=websiteDetails.website_currency + balance.total.toLocaleString()%> </h6> <span>Subscriber</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        
+                        </li>
+                        <li> <a class="dropdown-item d-flex align-items-center" href="/user/settings/profile"> <i
+                                    class="bi bi-gear"></i> <span>Account Settings</span> </a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li> <a class="dropdown-item d-flex align-items-center" href="/contact-us"> <i
+                                    class="bi bi-question-circle"></i> <span>Need Help?</span> </a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li> <a class="dropdown-item d-flex align-items-center" href="/logout"> <i
+                                    class="bi bi-box-arrow-right"></i> <span>Sign Out</span> </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <%-include("./sidebar")%>
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1><%=title%></h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active"><%=title%></li>
+                </ol>
+            </nav>
+        </div>

@@ -1,0 +1,251 @@
+CREATE TABLE f_users(
+    uid BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    fullname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone_number VARCHAR(20) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    avatar VARCHAR(255) NULL,
+    is_vendor TINYINT NULL DEFAULT 0,
+    mining_balance DECIMAL(25,19) NULL DEFAULT 0,
+    activities_balance DECIMAL(25,19) NULL DEFAULT 0,
+    referral_balance DECIMAL(25,19) NULL DEFAULT 0,
+    vendor_balance DECIMAL(25,19) NULL DEFAULT 0,
+    is_verify TINYINT NULL DEFAULT 0,
+    is_paid TINYINT NULL DEFAULT 0,
+    plan_id BIGINT NULL,
+    plan_name VARCHAR(255) NULL,
+    plan_mining_amount BIGINT NULL DEFAULT 0,
+    plan_mining_minute BIGINT NULL DEFAULT 0,
+    notice TINYINT NOT NULL DEFAULT 0,
+    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) DEFAULT CHARSET=utf8;
+
+CREATE TABLE f_mining_history(
+    m_id SERIAL,
+    m_user_id BIGINT NOT NULL,
+    m_start_time VARCHAR(255) NOT NULL,
+    m_end_time VARCHAR(255) NOT NULL,
+    m_amount DECIMAL(25,19) NOT NULL DEFAULT 0,
+    m_seconds BIGINT NOT NULL DEFAULT 0,
+    m_text VARCHAR(20) NOT NULL,
+    m_balance DECIMAL(25,19) NOT NULL DEFAULT 0,
+    m_status TINYINT NULL DEFAULT 0,
+    INDEX(m_user_id),
+    FOREIGN KEY(m_user_id) REFERENCES f_users(uid) ON DELETE CASCADE ON UPDATE CASCADE
+)
+
+CREATE TABLE f_upline_generation (
+  g_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  g_name varchar(255) NOT NULL,
+  g_plan_percent bigint(20) NULL,
+  g_plan bigint(20) NOT NULL
+);
+
+
+CREATE TABLE f_coupons(
+c_id SERIAL,
+c_code VARCHAR(255) NOT NULL UNIQUE,
+c_amount DECIMAL(25,19) NOT NULL,
+c_author BIGINT NOT NULL,
+c_usedby BIGINT NULL,
+c_status TINYINT NOT NULL DEFAULT 0,
+INDEX(c_usedby),
+FOREIGN KEY(c_usedby) REFERENCES f_users(uid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
+CREATE TABLE f_website_settings(
+id SERIAL,
+website_title VARCHAR(255) NOT NULL DEFAULT 'My Website',
+website_tagline VARCHAR(255) NOT NULL DEFAULT 'Cool Website',
+website_description TEXT NOT NULL,
+website_keyword TEXT NOT NULL,
+website_url VARCHAR(255) NOT NULL,
+website_logo VARCHAR(255) NULL,
+website_favicon VARCHAR(255) NULL,
+website_phone_number VARCHAR(255) NOT NULL,
+website_address VARCHAR(255) NOT NULL,
+website_email VARCHAR(255) NOT NULL,
+website_author VARCHAR(255) NOT NULL,
+website_dev_name VARCHAR(255) NOT NULL,
+website_dev_link TEXT NOT NULL,
+website_facebook VARCHAR(255) NULL,
+website_twitter VARCHAR(255) NULL,
+website_youtube VARCHAR(255) NULL,
+website_instagram VARCHAR(255) NULL,
+website_currency VARCHAR(10) NOT NULL DEFAULT '$',
+website_header_code LONGTEXT NULL,
+website_footer_code LONGTEXT NULL,
+website_per_coin DECIMAL(25,19) NOT NULL,
+website_act_withdrawal_status TINYINT NOT NULL DEFAULT 1,
+website_ref_withdrawal_status TINYINT NOT NULL DEFAULT 1,
+website_min_withdrawal DECIMAL(25,19) NULL DEFAULT 1,
+website_max_withdrawal DECIMAL(25,19) NULL DEFAULT 1,
+website_reward_name VARCHAR(255) NOT NULL,
+website_facebook_code VARCHAR(255) NOT NULL,
+website_coinbase_key VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE f_referrals(
+r_id SERIAL,
+r1_id BIGINT NOT NULL,
+r2_id BIGINT NOT NULL,
+r_amount DECIMAL(25,19) NULL DEFAULT 0,
+r_status TINYINT NULL DEFAULT 0,
+INDEX(r1_id),
+INDEX(r2_id),
+FOREIGN KEY(r1_id) REFERENCES f_users(uid) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(r2_id) REFERENCES f_users(uid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE f_earning_history(
+h_id SERIAL,
+h_user_id BIGINT NOT NULL,
+h_amount DECIMAL(25,19) NOT NULL,
+h_text VARCHAR(255) NOT NULL,
+h_created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+INDEX(h_user_id),
+FOREIGN KEY(h_user_id) REFERENCES f_users(uid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE f_admins(
+    uid BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    fullname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone_number VARCHAR(20) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    avatar VARCHAR(255) NULL,
+    role INT NOT NULL DEFAULT 1,
+    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE f_pages (
+page_id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+page_title text NOT NULL,
+page_slug text NOT NULL,
+page_author BIGINT NOT NULL,
+INDEX(page_author),
+FOREIGN KEY(page_author) REFERENCES f_admins(uid) ON DELETE CASCADE ON UPDATE CASCADE,
+page_status tinyint DEFAULT 1,
+page_description LONGTEXT NOT NULL,
+page_created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+page_updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+)DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE f_posts (
+post_id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+post_title text NOT NULL,
+post_image VARCHAR(255) NULL,
+post_slug text NOT NULL,
+post_author BIGINT NOT NULL,
+post_status tinyint DEFAULT 1,
+post_description LONGTEXT NOT NULL,
+post_views bigint NULL DEFAULT 0,
+post_earnable TINYINT NOT NULL DEFAULT 0,
+post_created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+post_updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+INDEX(post_author),
+FOREIGN KEY(post_author) REFERENCES f_admins(uid) ON DELETE CASCADE ON UPDATE CASCADE
+)DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE f_posts_track(
+    t_id SERIAL,
+    t_post_id BIGINT NOT NULL,
+    t_user_id BIGINT NOT NULL,
+    INDEX(t_post_id),
+    INDEX(t_user_id),
+    FOREIGN KEY(t_post_id) REFERENCES f_posts(post_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(t_user_id) REFERENCES f_users(uid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE f_bonus(
+b_id SERIAL,
+b_register_bonus DECIMAL(25,19) NOT NULL DEFAULT 0,
+b_referral_bonus DECIMAL(25,19) NOT NULL DEFAULT 0,
+b_share_bonus DECIMAL(25,19) NOT NULL DEFAULT 0
+);
+
+CREATE TABLE f_wallet(
+w_id SERIAL,
+w_user_id BIGINT NOT NULL,
+w_type VARCHAR(255) NOT NULL,
+w_fullname VARCHAR(255) NULL,
+w_phone_number VARCHAR(255) NULL,
+w_coin_name VARCHAR(255) NULL,
+w_coin_address VARCHAR(255) NULL,
+w_coin_network VARCHAR(255) NULL,
+w_coin_memo VARCHAR(255) NULL,
+w_account_name VARCHAR(255) NULL,
+w_account_number VARCHAR(255) NULL,
+w_account_bank_name VARCHAR(255) NULL,
+w_account_bank_type VARCHAR(255) NULL,
+INDEX(w_user_id),
+FOREIGN KEY(w_user_id) REFERENCES f_users(uid) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+CREATE TABLE f_withdrawal_history(
+    w_wid SERIAL,
+    w_trx_id VARCHAR(15) NOT NULL,
+    w_user_id BIGINT NOT NULL,
+    w_wtype VARCHAR(5) NOT NULL,
+    w_amount DECIMAL(25,19) NOT NULL,
+    w_status TINYINT NOT NULL DEFAULT 0,
+    w_created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX(w_user_id),
+    FOREIGN KEY(w_user_id) REFERENCES f_users(uid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
+CREATE TABLE f_notice (
+ id SERIAL,
+ notice_title VARCHAR(255) DEFAULT NULL,
+ notice_body TEXT,
+ notice_status TINYINT(4) NOT NULL DEFAULT '1',
+ created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+)DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE f_plans (
+ plan_id SERIAL,
+ plan_name VARCHAR(255) NOT NULL,
+ plan_price DECIMAL(25,19) NOT NULL,
+ plan_mining_amount DECIMAL(25,19) NOT NULL,
+ plan_mining_minute DECIMAL(25,19) NOT NULL,
+ plan_auto_mining TINYINT NOT NULL DEFAULT 0,
+ plan_min_withdrawal DECIMAL(25,19) NOT NULL DEFAULT 0,
+ plan_max_withdrawal DECIMAL(25,19) NOT NULL DEFAULT 0,
+ plan_vendor_coupon_commission DECIMAL(25,19) NOT NULL DEFAULT 0,
+ plan_status TINYINT NOT NULL DEFAULT 1,
+ plan_created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ plan_updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+)
+
+
+
+
+ALTER TABLE f_plans ADD COLUMN plan_min_withdrawal DECIMAL(25,19) NOT NULL DEFAULT 0 AFTER plan_auto_mining;
+ALTER TABLE f_plans ADD COLUMN plan_max_withdrawal DECIMAL(25,19) NOT NULL DEFAULT 0 AFTER plan_min_withdrawal;
+
+
+
+ALTER TABLE f_upline_generation ADD COLUMN g_plan_percent bigint(20) NULL;
+ALTER TABLE f_users ADD COLUMN is_vendor TINYINT NULL DEFAULT 0 AFTER avatar;
+ALTER TABLE f_users ADD COLUMN vendor_balance DECIMAL(25,19) NULL DEFAULT 0 AFTER referral_balance;
+ALTER TABLE f_plans ADD COLUMN plan_vendor_coupon_commission DECIMAL(25,19) NOT NULL DEFAULT 0 AFTER plan_max_withdrawal;
+
+rename this
+ALTER TABLE f_website_settings ADD COLUMN website_act_withdrawal_status TINYINT NOT NULL DEFAULT 1;
+ALTER TABLE f_website_settings ADD COLUMN website_ref_withdrawal_status TINYINT NOT NULL DEFAULT 1 AFTER website_act_withdrawal_status 
+
+ALTER TABLE f_coupons DROP FOREIGN KEY `f_coupons_ibfk_2`
+

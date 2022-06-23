@@ -1,0 +1,225 @@
+<%-include("../../partials/header")%>
+        <section class="section dashboard">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+
+                        <div class="col-12 col-md-4">
+                            <div class="card info-card sales-card">
+                           
+                                <div class="card-body">
+                                    <h5 class="card-title">Mine Balance <span></span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i style="font-size: 32px !important;" class='bx bxl-sketch'></i></div>
+                                            <div class="ps-3">
+                                                <h6><%=user.mining_balance.toLocaleString()%> <span class="rewardnn"><%=websiteDetails.website_reward_name%></span> <p style="font-size: 15px;font-style: italic;"><%=websiteDetails.website_currency + ((user.mining_balance * websiteDetails.website_per_coin).toLocaleString())%></p></h6> 
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="card info-card sales-card">
+                           
+                                <div class="card-body">
+                                    <h5 class="card-title">Activities Balance <span></span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i style="font-size: 32px !important;" class='bx bx-droplet'></i></div>
+                                            <div class="ps-3">
+                                                <h6><%=user.activities_balance.toLocaleString()%> <span class="rewardnn"><%=websiteDetails.website_reward_name%></span><p style="font-size: 15px;font-style: italic;"><%=websiteDetails.website_currency + ((user.activities_balance * websiteDetails.website_per_coin).toLocaleString())%></p></h6> 
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="card info-card sales-card">
+                           
+                                <div class="card-body">
+                                    <h5 class="card-title">Referral Balance <span></span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i style="font-size: 32px !important;" class='bx bx-link'></i></div>
+                                            <div class="ps-3">
+                                                <h6><%=websiteDetails.website_currency%><%=user.referral_balance.toLocaleString()%></h6> 
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                            <div class="card info-card sales-card">
+                           
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Shares <span></span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i style="font-size: 32px !important;" class='bx bxs-share'></i></div>
+                                            <div class="ps-3">
+                                                <h6><%=sharePost%></h6> 
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                            <div class="card info-card sales-card">
+                           
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Withdrawal <span></span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i style="font-size: 32px !important;" class='bx bx-coin-stack'></i></div>
+                                            <div class="ps-3">
+                                                <h6><%=websiteDetails.website_currency + (withdrawalAmount.toLocaleString())%></h6> 
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                   
+                        <div class="col-12 col-md-4">
+                            <div class="card info-card sales-card">
+                           
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Referral <span></span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-link"></i></div>
+                                            <div class="ps-3">
+                                                <h6><%=referralCount%></h6> 
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                   
+
+
+                        <div class="col-xxl-4 col-xl-12">
+                            <div class="card info-card customers-card">
+                                
+                                <div class="card-body">
+                                    <h5 class="card-title">Subscription Info</h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-briefcase"></i></div>
+                                        <div class="ps-3">
+                                            <h6><%=user.plan_name || 'No Subscription'%></h6> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Referral Link</h4>
+                                        <form id="referrallink">
+                                            <div class="col-lg-12">
+                                                <div>
+                                                    <input class="form-control" type="text" placeholder="<%=homeUrl%>/register?ref=<%=user.username%>" value="<%=homeUrl%>/register?ref=<%=user.username%>" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                                <button type="submit" class="btn btn-primary w-md">Copy</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-lg-8 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Last 10 Referral History</h4>
+                                        
+                                        <%if(referralHistory.length){%>
+                                            
+                        
+                                            <div class="table-responsive">
+                                                <table id="mytable" class="table">
+                                                    <thead>
+                                                        <tr>
+                            
+                                                            <th> # </th>
+                                                            <th> User </th>
+                                                            <th> Date </th>
+                                                            <th> Status </th>
+                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <%referralHistory.map((rh,index)=>{%>
+                            
+                                                            <tr>
+                                                                <td>
+                                                                    <%=index + 1 %>
+                                                                </td>
+                        
+                                                                <td>
+                                                                    <img src="<%=rh.avatar ? rh.avatar:'/img/avatar/avatar.jpg' %>" class="rounded-circle avatar-xs"
+                                                                        alt="image">
+                                                                    <%=rh.fullname%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=rh.created_at%>
+                                                                </td>
+                                                                <td>
+                                                                    <%if(rh.r_status){%>
+                                                                        <button type="button" class="btn btn-success btn-sm waves-effect waves-light">Verified</button>
+                                                                        <%}else{%>
+                                                                            <button type="button" class="btn btn-danger btn-sm waves-effect waves-light">Unverified</button>
+                                                                            <%}%>
+                                                                </td>
+                            
+                                                            </tr>
+                            
+                                                            <%})%>
+                            
+                            
+                                                    </tbody>
+                                                </table>
+                                                
+                                            </div>
+                                            <%}else{%>
+                                                <h6 class="text-center pt-3">No Referral Stats At The Moment</h6>
+                                                <%}%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <%if(user.notice){%>
+                        <%-include("./partials/notice")%>
+                        <button id="noticebtn" data-bs-toggle="modal" data-bs-target="#notice" hidden></button>
+                        <%}%>
+                        
+                        
+                        <script src="/user/js/user/dashboard/dashboard.js"></script>
+                     
+                    </div>
+                </div>
+               
+            </div>
+        </section>
+   
+    
+
+    <%-include("../../partials/footer")%>
