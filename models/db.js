@@ -33,7 +33,7 @@ db.getConnection((err,data) => {
         logger.debug(err)
         return console.log(err)
     }
-    console.log("DB CONNECTED ")
+    console.log("DB CONNECTED")
     
     
 })
